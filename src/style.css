@@ -1,12 +1,12 @@
 #osszes_lista{
-	outline: 2px solid red
+	outline: 2px solid red;
 }
 #the_lista{
-	outline: 2px solid orange
+	outline: 2px solid orange;
 }
-#hossz_lista{
-	outline: 2px solid green
+div{
+	outline: 2px solid green;
 }
-/* #hossz_lista{
-	outline: 2px solid red
-} */
+p{
+	border: 2px solid blue;
+}

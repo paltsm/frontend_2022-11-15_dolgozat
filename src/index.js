@@ -1,13 +1,12 @@
 import './style.css';
 
-
-
 document.addEventListener("DOMContentLoaded", ()=>{
+	document.getElementById("darabszam_output").readOnly = true;//igy kezdettol onlyread
 	Osszes()	
 	The()
 	Hossz()
+	Darabszam()
 })
-// Összes idézet: Jelenítsd meg az összes idézetet és a szerzőjét, szerző szerint ABC sorrendben! Az eredményt listában jelenítsd meg, az idézet szövege pedig a megfelelő HTML tag-ben szerepeljen.
 
 async function beolvas(){
 	let response= await fetch("../quotes.json")
@@ -16,6 +15,7 @@ async function beolvas(){
 	return eredmeny
 }
 
+// Összes idézet: Jelenítsd meg az összes idézetet és a szerzőjét, szerző szerint ABC sorrendben! Az eredményt listában jelenítsd meg, az idézet szövege pedig a megfelelő HTML tag-ben szerepeljen.
 
 function Osszes(){
 	document.getElementById("osszes").addEventListener("click",async()=>{
@@ -75,15 +75,18 @@ function Hossz(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 // Darabszám: A felhasználó által megadott szerzőnek hány idézete van? Az eredményt egy readonly, number típusú input mezőbe helyezd!
+
+function Darabszam(){
+	document.getElementById("darabszam").addEventListener("click",async()=>{
+		let eredmeny=await beolvas()
+
+		let eredmeny_lista=[]
+		for(let x of eredmeny.quotes){
+			eredmeny_lista.push(x.author)
+		}
+		
+		let darabszam_input=document.getElementById("darabszam_input").value
+		document.getElementById("darabszam_output").value=eredmeny_lista.filter(e=>(e==darabszam_input)).length
+	})
+}
